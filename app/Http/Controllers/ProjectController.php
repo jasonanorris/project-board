@@ -28,7 +28,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $project = new Project();
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->save();
+
+        return redirect(route('project.index'));
     }
 
     /**
@@ -44,7 +54,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit')->with(['project' => $project]);
     }
 
     /**
@@ -52,7 +62,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->save();
+
+        return redirect(route('project.index'));
     }
 
     /**

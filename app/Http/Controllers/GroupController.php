@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Models\Task;
 use App\Models\Group;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class GroupController extends Controller
 {
     public function index()
     {
-        return view('task.index')->with('tasks',Task::open()->paginate(10));
+        return view('group.index')->with('groups',Group::open()->paginate(10));
     }
 
     public function store(Request $request)
@@ -21,12 +20,9 @@ class TaskController extends Controller
             'description' => 'required'
         ]);
 
-        $targetModel = match($request->input('target_model')){
-            'project' => Project::find($request->input('taskable_id')),
-            'group' => Group::find($request->input('taskable_id'))
-        };
+        $targetModel =  Project::find($request->input('project_id'));
 
-        $targetModel->tasks()->create([
+        $targetModel->groups()->create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
         ]);
@@ -34,9 +30,9 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
-    public function complete(Request $request, Task $task)
+    public function complete(Request $request, Group $group)
     {
-        $task->markAsCompleted();
+        $group->markAsCompleted();
         return redirect()->back();
     }
 }

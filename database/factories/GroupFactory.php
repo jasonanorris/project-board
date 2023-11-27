@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
  */
-class TaskFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +20,8 @@ class TaskFactory extends Factory
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),
             'status' => fake()->randomElement(['open', 'completed']),
-            'taskable_id' => fake()->numberBetween(1,10),
-            'taskable_type' => fake()->randomElement(['App\Models\Project', 'App\Models\Group']),
+            'project_id' => fake()->numberBetween(1,10),
+            //'taskable_type' => fake()->randomElement(['App\Models\Business', 'App\Models\Person']),
         ];
     }
 }
