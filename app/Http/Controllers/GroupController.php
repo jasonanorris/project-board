@@ -20,12 +20,18 @@ class GroupController extends Controller
             'description' => 'required'
         ]);
 
-        $targetModel =  Project::find($request->input('project_id'));
+        $group = new Group();
+        $group->title = $request->input('title');
+        $group->description = $request->input('description');
+        $group->project_id = $request->input('project_id');
+        $group->save();
+
+        /*$targetModel =  Project::find($request->input('project_id'));
 
         $targetModel->groups()->create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-        ]);
+        ]);*/
 
         return redirect()->back();
     }

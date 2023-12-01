@@ -10,26 +10,27 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     </head>
     <body class="font-sans antialiased">
-        
-  @include('layouts.topnav')
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
 
-  @include('layouts.navigation')
-    
-  <div class="p-4 sm:ml-64">     
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
-   {{ $slot }}
-        
-     
-  </div>
-
-   
-        
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
     </body>
 </html>

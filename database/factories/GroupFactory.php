@@ -20,8 +20,7 @@ class GroupFactory extends Factory
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),
             'status' => fake()->randomElement(['open', 'completed']),
-            'project_id' => fake()->numberBetween(1,10),
-            //'taskable_type' => fake()->randomElement(['App\Models\Business', 'App\Models\Person']),
+            'project_id' => fake()->numberBetween(1,10)
         ];
     }
 }
